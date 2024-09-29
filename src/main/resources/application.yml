@@ -1,3 +1,13 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: jdbc:postgresql://${DATABASE_URL:localhost}:${DATABASE_PORT:5432}/cityguide
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATBASE_PASSWORD:cityguide123789}
+    driver-class-name: org.postgresql.Driver
+
 logging:
   level:
     org.apache.coyote.http11.Http11InputBuffer: TRACE # Incoming HTTP requests
