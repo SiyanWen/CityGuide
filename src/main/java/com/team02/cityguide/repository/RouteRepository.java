@@ -14,7 +14,7 @@ public interface RouteRepository extends ListCrudRepository<RouteEntity, Long> {
     List<RouteEntity> findByName(String name); // <2>
 
     @Modifying
-    @Query("DELETE FROM routes WHERE id = :routeId")   // route_id or id?
+    @Query("DELETE FROM routes WHERE route_id = :routeId")   // route_id or id?
     void deleteByRouteId (Long routeId);
 
     @Modifying
