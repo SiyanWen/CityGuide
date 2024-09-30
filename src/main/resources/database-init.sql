@@ -52,7 +52,7 @@ CREATE TABLE spot_galleries
 
 CREATE TABLE routes
 (
-    id                  SERIAL PRIMARY KEY NOT NULL,
+    route_id            SERIAL PRIMARY KEY NOT NULL,
     gallery_id          INTEGER            NOT NULL,
     name                TEXT               NOT NULL,
     description         TEXT               NOT NULL,
@@ -65,15 +65,15 @@ CREATE TABLE routes
 
 create table user_spots
 (
-    id              SERIAL PRIMARY KEY NOT NULL,
-    original_gid    VARCHAR(100)       NOT NULL,
-    latitude        NUMERIC            NOT NULL,
-    longitude       NUMERIC            NOT NULL,
+    id              SERIAL PRIMARY KEY  NOT NULL,
+    original_gid    VARCHAR(100) UNIQUE NOT NULL,
+    latitude        NUMERIC             NOT NULL,
+    longitude       NUMERIC             NOT NULL,
     route_id        INTEGER,
     cart_id         INTEGER,
     gallery_id      INTEGER,
-    name            TEXT               NOT NULL,
-    address         TEXT               NOT NULL,
+    name            TEXT                NOT NULL,
+    address         TEXT                NOT NULL,
     description     TEXT,
     rating          NUMERIC,
     rating_count    NUMERIC,
@@ -85,7 +85,7 @@ create table user_spots
     reviews         TEXT,
     CONSTRAINT fk_user_spot FOREIGN KEY (gallery_id) REFERENCES spot_galleries (id) ON DELETE SET NULL,
     CONSTRAINT fk_user_spot2 FOREIGN KEY (cart_id) REFERENCES carts (id) ON DELETE SET NULL,
-    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE SET NULL
+    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE SET NULL
 );
 
 CREATE TABLE unit_routes
@@ -99,7 +99,7 @@ CREATE TABLE unit_routes
     budget              NUMERIC            NOT NULL,
     distance            NUMERIC            NOT NULL,
     duration_time       NUMERIC            NOT NULL,
-    CONSTRAINT fk_unit_route FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE SET NULL,
+    CONSTRAINT fk_unit_route FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE SET NULL,
     CONSTRAINT fk_unit_route2 FOREIGN KEY (startspot_id) REFERENCES user_spots (id) ON DELETE CASCADE,
     CONSTRAINT fk_unit_route3 FOREIGN KEY (endspot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
