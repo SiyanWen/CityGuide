@@ -6,7 +6,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("routes")
 public record RouteEntity(
     @Id
-    Long id,
+    Long routeId,
     Long galleryId,
     String name,
     String description,
