@@ -10,7 +10,7 @@ public record UnitRouteEntity(
     Long routeId,
     String googlePolylineId,
     Long startspotId,
-    Long endpointId,
+    Long endspotId,
     String trafficMode,
     Double budget,
     Double distance,
