@@ -16,3 +16,4 @@ logging:
   level:
     org.apache.coyote.http11.Http11InputBuffer: TRACE # Incoming HTTP requests
     org.springframework.jdbc.datasource.init: DEBUG # Database initialization
+    org.springframework.jdbc.core: DEBUG # SQL
