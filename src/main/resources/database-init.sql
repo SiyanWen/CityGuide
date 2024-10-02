@@ -63,7 +63,7 @@ CREATE TABLE routes
     CONSTRAINT fk_route FOREIGN KEY (gallery_id) REFERENCES route_galleries (id) ON DELETE CASCADE
 );
 
-create table user_spots
+CREATE TABLE user_spots
 (
     id              SERIAL PRIMARY KEY  NOT NULL,
     original_gid    VARCHAR(100) UNIQUE NOT NULL,
@@ -83,9 +83,7 @@ create table user_spots
     close_time      TEXT,
     image_url       TEXT,
     reviews         TEXT,
-    CONSTRAINT fk_user_spot FOREIGN KEY (gallery_id) REFERENCES spot_galleries (id) ON DELETE SET NULL,
-    CONSTRAINT fk_user_spot2 FOREIGN KEY (cart_id) REFERENCES carts (id) ON DELETE SET NULL,
-    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE SET NULL
+    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE CASCADE
 );
 
 CREATE TABLE unit_routes
