@@ -52,7 +52,7 @@ CREATE TABLE spot_galleries
 
 CREATE TABLE routes
 (
-    route_id            SERIAL PRIMARY KEY NOT NULL,
+    id                  SERIAL PRIMARY KEY NOT NULL,
     gallery_id          INTEGER            NOT NULL,
     name                TEXT               NOT NULL,
     description         TEXT               NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE user_spots
     close_time      TEXT,
     image_url       TEXT,
     reviews         TEXT,
-    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE CASCADE
+    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE unit_routes
@@ -97,7 +97,7 @@ CREATE TABLE unit_routes
     budget              NUMERIC            NOT NULL,
     distance            NUMERIC            NOT NULL,
     duration_time       NUMERIC            NOT NULL,
-    CONSTRAINT fk_unit_route FOREIGN KEY (route_id) REFERENCES routes (route_id) ON DELETE SET NULL,
+    CONSTRAINT fk_unit_route FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE SET NULL,
     CONSTRAINT fk_unit_route2 FOREIGN KEY (startspot_id) REFERENCES user_spots (id) ON DELETE CASCADE,
     CONSTRAINT fk_unit_route3 FOREIGN KEY (endspot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
