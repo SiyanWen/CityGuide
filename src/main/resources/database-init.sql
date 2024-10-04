@@ -27,40 +27,54 @@ CREATE TABLE authorities
     CONSTRAINT fk_user FOREIGN KEY (email) REFERENCES users (email) ON DELETE CASCADE
 );
 
-CREATE TABLE carts
+CREATE TABLE cart_spots
 (
-    id          SERIAL PRIMARY KEY NOT NULL,
-    user_id     INTEGER UNIQUE     NOT NULL,
+    id              SERIAL PRIMARY KEY NOT NULL,
+    original_gid    TEXT UNIQUE        NOT NULL,
+    user_id         INTEGER UNIQUE     NOT NULL,
+    name            TEXT               NOT NULL,
+    address         TEXT               NOT NULL,
+    rating          NUMERIC,
+    rating_count    NUMERIC,
+    cost            NUMERIC,
+    duration_time   NUMERIC,
+    open_time       TEXT,
+    close_time      TEXT,
+    latitude        NUMERIC            NOT NULL,
+    longitude       NUMERIC            NOT NULL,
     CONSTRAINT fk_cart FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_spot FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
 );
 
-CREATE TABLE route_galleries
+CREATE TABLE route_likes
 (
     id          SERIAL PRIMARY KEY NOT NULL,
-    name        TEXT,
     user_id     INTEGER UNIQUE     NOT NULL,
-    CONSTRAINT fk_route_gallery FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    route_id    INTEGER UNIQUE     NOT NULL,
+    CONSTRAINT fk_route_like FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_route_like FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
 );
 
-CREATE TABLE spot_galleries
+CREATE TABLE spot_likes
 (
     id          SERIAL PRIMARY KEY NOT NULL,
-    name        TEXT,
     user_id     INTEGER UNIQUE     NOT NULL,
+    spot_id     INTEGER UNIQUE     NOT NULL,
     CONSTRAINT fk_spot_gallery FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_spot_gallery FOREIGN KEY (spot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
 
 CREATE TABLE routes
 (
     id                  SERIAL PRIMARY KEY NOT NULL,
-    gallery_id          INTEGER            NOT NULL,
+    creator_id          INTEGER            NOT NULL,
     name                TEXT               NOT NULL,
     description         TEXT               NOT NULL,
     distance            NUMERIC            NOT NULL,
     traffic_mode        VARCHAR(50)        NOT NULL,
     budget              NUMERIC            NOT NULL,
     duration_time       NUMERIC            NOT NULL,
-    CONSTRAINT fk_route FOREIGN KEY (gallery_id) REFERENCES route_galleries (id) ON DELETE CASCADE
+    CONSTRAINT fk_route FOREIGN KEY (creator_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_spots
@@ -71,7 +85,6 @@ CREATE TABLE user_spots
     longitude       NUMERIC             NOT NULL,
     route_id        INTEGER,
     cart_id         INTEGER,
-    gallery_id      INTEGER,
     name            TEXT                NOT NULL,
     address         TEXT                NOT NULL,
     description     TEXT,
@@ -83,7 +96,6 @@ CREATE TABLE user_spots
     close_time      TEXT,
     image_url       TEXT,
     reviews         TEXT,
-    CONSTRAINT fk_user_spot3 FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE unit_routes
