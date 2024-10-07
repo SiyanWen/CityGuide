@@ -1,5 +1,6 @@
 package com.team02.cityguide.controller;
 
+import com.team02.cityguide.model.RouteDto;
 import com.team02.cityguide.model.SurveyBody;
 import com.team02.cityguide.service.CartService;
 import com.team02.cityguide.service.GalleryService;
@@ -37,5 +38,7 @@ public class SurveyController {
     public List<RouteDto> submitSurvey(@RequestBody SurveyBody surveyBody) {
         // use user_id to get cart_spots
         // plan()
+
+        return null;
     }
 }

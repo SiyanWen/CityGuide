@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS carts CASCADE;
-DROP TABLE IF EXISTS spot_galleries CASCADE;
-DROP TABLE IF EXISTS route_galleries CASCADE;
+DROP TABLE IF EXISTS cart_spots CASCADE;
+DROP TABLE IF EXISTS spot_likes CASCADE;
+DROP TABLE IF EXISTS route_likes CASCADE;
 DROP TABLE IF EXISTS unit_routes CASCADE;
 DROP TABLE IF EXISTS user_spots CASCADE;
 DROP TABLE IF EXISTS routes CASCADE;
@@ -42,8 +42,8 @@ CREATE TABLE cart_spots
     opening_hours   JSONB,
     latitude        NUMERIC            NOT NULL,
     longitude       NUMERIC            NOT NULL,
-    CONSTRAINT fk_cart FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-    CONSTRAINT fk_spot FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
+    CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_cart_spot FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
 );
 
 CREATE TABLE route_likes
@@ -101,9 +101,9 @@ CREATE TABLE unit_routes
 (
     id                  SERIAL PRIMARY KEY NOT NULL,
     route_id            INTEGER            NOT NULL,
-    google_polyline_id  TEXT UNIQUE        NOT NULL,
-    startspot_id       INTEGER            NOT NULL,
-    endspot_id         INTEGER            NOT NULL,
+    google_polyline_id  TEXT UNIQUE        NOT NULL,        // encodedPolyline
+    startspot_id        INTEGER            NOT NULL,
+    endspot_id          INTEGER            NOT NULL,
     traffic_mode        VARCHAR(50)        NOT NULL,
     budget              NUMERIC            NOT NULL,
     distance            NUMERIC            NOT NULL,
