@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS cart_spots CASCADE;
-DROP TABLE IF EXISTS spot_likes CASCADE;
-DROP TABLE IF EXISTS route_likes CASCADE;
-DROP TABLE IF EXISTS unit_routes CASCADE;
-DROP TABLE IF EXISTS user_spots CASCADE;
-DROP TABLE IF EXISTS routes CASCADE;
-DROP TABLE IF EXISTS authorities CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
+DELETE TABLE IF EXISTS cart_spots CASCADE;
+DELETE TABLE IF EXISTS spot_likes CASCADE;
+DELETE TABLE IF EXISTS route_likes CASCADE;
+DELETE TABLE IF EXISTS unit_routes CASCADE;
+DELETE TABLE IF EXISTS user_spots CASCADE;
+DELETE TABLE IF EXISTS routes CASCADE;
+DELETE TABLE IF EXISTS authorities CASCADE;
+DELETE TABLE IF EXISTS users CASCADE;
 
 
 CREATE TABLE users
@@ -27,43 +27,6 @@ CREATE TABLE authorities
     CONSTRAINT fk_user FOREIGN KEY (email) REFERENCES users (email) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_spots
-(
-    id              SERIAL PRIMARY KEY NOT NULL,
-    original_gid    TEXT UNIQUE        NOT NULL,
-    user_id         INTEGER UNIQUE     NOT NULL,
-    name            TEXT               NOT NULL,
-    address         TEXT               NOT NULL,
-    rating          NUMERIC,
-    rating_count    NUMERIC,
-    cost            NUMERIC,
-    duration_time   NUMERIC,
-    cover_img_url   TEXT,
-    opening_hours   JSONB,
-    latitude        NUMERIC            NOT NULL,
-    longitude       NUMERIC            NOT NULL,
-    CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-    CONSTRAINT fk_cart_spot FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
-);
-
-CREATE TABLE route_likes
-(
-    id          SERIAL PRIMARY KEY NOT NULL,
-    user_id     INTEGER UNIQUE     NOT NULL,
-    route_id    INTEGER UNIQUE     NOT NULL,
-    CONSTRAINT fk_route_like FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-    CONSTRAINT fk_route_like FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
-);
-
-CREATE TABLE spot_likes
-(
-    id          SERIAL PRIMARY KEY NOT NULL,
-    user_id     INTEGER UNIQUE     NOT NULL,
-    spot_id     INTEGER UNIQUE     NOT NULL,
-    CONSTRAINT fk_spot_gallery FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-    CONSTRAINT fk_spot_gallery FOREIGN KEY (spot_id) REFERENCES user_spots (id) ON DELETE CASCADE
-);
-
 CREATE TABLE routes
 (
     id                  SERIAL PRIMARY KEY NOT NULL,
@@ -75,6 +38,15 @@ CREATE TABLE routes
     budget              NUMERIC            NOT NULL,
     duration_time       NUMERIC            NOT NULL,
     CONSTRAINT fk_route FOREIGN KEY (creator_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE route_likes
+(
+    id          SERIAL PRIMARY KEY NOT NULL,
+    user_id     INTEGER            NOT NULL,
+    route_id    INTEGER            NOT NULL,
+    CONSTRAINT fk_route_like FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_route_like2 FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_spots
@@ -97,11 +69,39 @@ CREATE TABLE user_spots
     reviews         TEXT,
 );
 
+CREATE TABLE spot_likes
+(
+    id          SERIAL PRIMARY KEY NOT NULL,
+    user_id     INTEGER            NOT NULL,
+    spot_id     INTEGER            NOT NULL,
+    CONSTRAINT fk_spot_gallery FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_spot_gallery2 FOREIGN KEY (spot_id) REFERENCES user_spots (id) ON DELETE CASCADE
+);
+
+CREATE TABLE cart_spots
+(
+    id              SERIAL PRIMARY KEY NOT NULL,
+    original_gid    TEXT               NOT NULL,
+    user_id         INTEGER            NOT NULL,
+    name            TEXT               NOT NULL,
+    address         TEXT               NOT NULL,
+    rating          NUMERIC,
+    rating_count    NUMERIC,
+    cost            NUMERIC,
+    duration_time   NUMERIC,
+    cover_img_url   TEXT,
+    opening_hours   JSONB,
+    latitude        NUMERIC            NOT NULL,
+    longitude       NUMERIC            NOT NULL,
+    CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_cart_spot2 FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
+);
+
 CREATE TABLE unit_routes
 (
     id                  SERIAL PRIMARY KEY NOT NULL,
     route_id            INTEGER            NOT NULL,
-    google_polyline_id  TEXT UNIQUE        NOT NULL,        // encodedPolyline
+    google_polyline_id  TEXT UNIQUE        NOT NULL,
     startspot_id        INTEGER            NOT NULL,
     endspot_id          INTEGER            NOT NULL,
     traffic_mode        VARCHAR(50)        NOT NULL,
