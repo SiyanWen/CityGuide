@@ -5,15 +5,14 @@ public record OriginalSpot(
         String name,
         String address,
         String description,
-        String imageUrl,
+        String coverImgUrl,
         Double latitude,
         Double longitude,
         Integer durationTime,
         Double cost,
         Double rating,
         Integer ratingCount,
-        String openTime,
-        String closeTime,
+        String openingHours,
         String reviews
 ) {
 }

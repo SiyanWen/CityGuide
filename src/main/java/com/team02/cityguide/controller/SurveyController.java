@@ -1,5 +1,6 @@
 package com.team02.cityguide.controller;
 
+import com.team02.cityguide.model.SurveyBody;
 import com.team02.cityguide.service.CartService;
 import com.team02.cityguide.service.GalleryService;
 import com.team02.cityguide.service.RouteService;

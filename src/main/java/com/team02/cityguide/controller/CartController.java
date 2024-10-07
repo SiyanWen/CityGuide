@@ -1,5 +1,8 @@
 package com.team02.cityguide.controller;
 
+import com.team02.cityguide.model.AddRouteBody;
+import com.team02.cityguide.model.AddSpotBody;
+import com.team02.cityguide.model.CartDto;
 import com.team02.cityguide.service.GalleryService;
 import com.team02.cityguide.service.CartService;
 import com.team02.cityguide.service.UserService;
@@ -19,7 +22,6 @@ public class CartController {
 
     @GetMapping("/cart")
     public CartDto getCart() {
-
         return null;
     }
 
@@ -33,7 +35,7 @@ public class CartController {
 
     }
 
-    @DeleteMapping("/cart/{spotId}")
+    @DeleteMapping("/cart/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
     public void removeSpotFromCart(@PathVariable("spotId") Long spotId) {
 
     }

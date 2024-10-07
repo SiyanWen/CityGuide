@@ -38,8 +38,8 @@ CREATE TABLE cart_spots
     rating_count    NUMERIC,
     cost            NUMERIC,
     duration_time   NUMERIC,
-    open_time       TEXT,
-    close_time      TEXT,
+    cover_img_url   TEXT,
+    opening_hours   JSONB,
     latitude        NUMERIC            NOT NULL,
     longitude       NUMERIC            NOT NULL,
     CONSTRAINT fk_cart FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
@@ -92,9 +92,8 @@ CREATE TABLE user_spots
     rating_count    NUMERIC,
     cost            NUMERIC,
     duration_time   NUMERIC,
-    open_time       TEXT,
-    close_time      TEXT,
-    image_url       TEXT,
+    opening_hours   JSONB,
+    cover_img_url   TEXT,
     reviews         TEXT,
 );
 

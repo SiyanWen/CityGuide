@@ -9,16 +9,16 @@ import java.util.List;
 
 @Service
 public class CartService {
-    private final CartRepository cartRepository;
+    private final CartSpotRepository cartSpotRepository;
     private final UserSpotRepository userSpotRepository;
-    private final RouteGalleryRepository routeGalleryRepository;
-    private final SpotGalleryRepository spotGalleryRepository;
+    private final RouteLikeRepository routeLikeRepository;
+    private final SpotLikeRepository spotLikeRepository;
 
-    public CartService(CartRepository cartRepository, UserSpotRepository userSpotRepository, RouteGalleryRepository routeGalleryRepository, SpotGalleryRepository spotGalleryRepository) {
-        this.cartRepository = cartRepository;
+    public CartService(CartSpotRepository cartSpotRepository, UserSpotRepository userSpotRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository) {
+        this.cartSpotRepository = cartSpotRepository;
         this.userSpotRepository = userSpotRepository;
-        this.routeGalleryRepository = routeGalleryRepository;
-        this.spotGalleryRepository = spotGalleryRepository;
+        this.routeLikeRepository = routeLikeRepository;
+        this.spotLikeRepository = spotLikeRepository;
     }
 
     // TODO
@@ -27,7 +27,7 @@ public class CartService {
     }
 
     // TODO
-    public void addSpotToCart(UserSpotEntity userSpotEntity) {
+    public void addSpotToCart(Long spotId) {
 
     }
 

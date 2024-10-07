@@ -1,9 +1,11 @@
 package com.team02.cityguide.controller;
 
-import com.team02.cityguide.entity.SpotGalleryEntity;
+import com.team02.cityguide.model.AddRouteBody;
+import com.team02.cityguide.model.AddSpotBody;
+import com.team02.cityguide.model.RouteGalleryDto;
+import com.team02.cityguide.model.SpotGalleryDto;
 import com.team02.cityguide.service.CartService;
 import com.team02.cityguide.service.GalleryService;
-import com.team02.cityguide.service.RouteService;
 import com.team02.cityguide.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,7 @@ public class GalleryController {
     @GetMapping("/spotGallery")
     public SpotGalleryDto getSpotGallery() {
         // getSpotGalleryByUserId
+        return null;
     }
 
     /*
@@ -53,6 +56,7 @@ public class GalleryController {
     @GetMapping("/routeGallery/{galleryId}")
     public RouteGalleryDto getRouteGalleryByUserId(@PathVariable("galleryId") Long galleryId) {
         // check if the route is created by the user and
+        return null;
     }
 
     @PostMapping("/spotGallery")

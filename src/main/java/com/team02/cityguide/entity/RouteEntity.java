@@ -6,8 +6,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("routes")
 public record RouteEntity(
     @Id
-    Long routeId,
-    Long galleryId,
+    Long id,
+    Long creatorId,
     String name,
     String description,
     Double distance,
