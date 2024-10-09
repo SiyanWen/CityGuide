@@ -69,16 +69,6 @@ public class GalleryController {
         //
     }
 
-    @PostMapping("/cart")
-    public void addSpotToCartFromGallery(@RequestBody AddSpotBody addSpotBody) {
-        //
-    }
-
-    @PostMapping("/cart")
-    public void addRouteToCart(@RequestBody AddRouteBody addRouteBody) {
-
-    }
-
     @DeleteMapping("/spotGallery/{spotId}")
     public void removeSpotFromGallery(@PathVariable("spotId") Long spotId) {
 

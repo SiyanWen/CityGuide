@@ -25,17 +25,17 @@ public class CartController {
         return null;
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/cart/spot")
     public void addSpotToCart(@RequestBody AddSpotBody addSpotBody) {
 
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/cart/route")
     public void addRouteToCart(@RequestBody AddRouteBody addRouteBody) {
 
     }
 
-    @DeleteMapping("/cart/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
+    @DeleteMapping("/cart/spot/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
     public void removeSpotFromCart(@PathVariable("spotId") Long spotId) {
 
     }

@@ -1,11 +1,11 @@
-DELETE TABLE IF EXISTS cart_spots CASCADE;
-DELETE TABLE IF EXISTS spot_likes CASCADE;
-DELETE TABLE IF EXISTS route_likes CASCADE;
-DELETE TABLE IF EXISTS unit_routes CASCADE;
-DELETE TABLE IF EXISTS user_spots CASCADE;
-DELETE TABLE IF EXISTS routes CASCADE;
-DELETE TABLE IF EXISTS authorities CASCADE;
-DELETE TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS unit_routes CASCADE;
+DROP TABLE IF EXISTS cart_spots CASCADE;
+DROP TABLE IF EXISTS spot_likes CASCADE;
+DROP TABLE IF EXISTS user_spots CASCADE;
+DROP TABLE IF EXISTS route_likes CASCADE;
+DROP TABLE IF EXISTS routes CASCADE;
+DROP TABLE IF EXISTS authorities CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 
 CREATE TABLE users
@@ -45,7 +45,7 @@ CREATE TABLE route_likes
     id          SERIAL PRIMARY KEY NOT NULL,
     user_id     INTEGER            NOT NULL,
     route_id    INTEGER            NOT NULL,
-    CONSTRAINT fk_route_like FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_route_like1 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT fk_route_like2 FOREIGN KEY (route_id) REFERENCES routes (id) ON DELETE CASCADE
 );
 
@@ -66,7 +66,7 @@ CREATE TABLE user_spots
     duration_time   NUMERIC,
     opening_hours   JSONB,
     cover_img_url   TEXT,
-    reviews         TEXT,
+    reviews         TEXT
 );
 
 CREATE TABLE spot_likes
@@ -74,7 +74,7 @@ CREATE TABLE spot_likes
     id          SERIAL PRIMARY KEY NOT NULL,
     user_id     INTEGER            NOT NULL,
     spot_id     INTEGER            NOT NULL,
-    CONSTRAINT fk_spot_gallery FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_spot_gallery1 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT fk_spot_gallery2 FOREIGN KEY (spot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
 
@@ -93,7 +93,7 @@ CREATE TABLE cart_spots
     opening_hours   JSONB,
     latitude        NUMERIC            NOT NULL,
     longitude       NUMERIC            NOT NULL,
-    CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT fk_cart_spot2 FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
 );
 
