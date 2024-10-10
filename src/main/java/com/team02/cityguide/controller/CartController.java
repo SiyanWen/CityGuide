@@ -22,21 +22,23 @@ public class CartController {
 
     @GetMapping("/cart")
     public CartDto getCart() {
-        return null;
+        return cartService.getCart(1L);
     }
 
     @PostMapping("/cart/spot")
     public void addSpotToCart(@RequestBody AddSpotBody addSpotBody) {
+        cartService.addSpotToCart(1L, addSpotBody.spotId());
 
     }
 
     @PostMapping("/cart/route")
     public void addRouteToCart(@RequestBody AddRouteBody addRouteBody) {
-
+        cartService.addRouteToCart(addRouteBody.routeId());
     }
 
     @DeleteMapping("/cart/spot/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
     public void removeSpotFromCart(@PathVariable("spotId") Long spotId) {
-
+        // UserSpotEntity userSpot = UserSpotService.getUserSpotById(spotId);
+        cartService.removeSpotFromCart();
     }
 }
