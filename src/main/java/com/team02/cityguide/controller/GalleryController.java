@@ -24,7 +24,8 @@ public class GalleryController {
     @GetMapping("/spotGallery")
     public SpotGalleryDto getSpotGallery() {
         // getSpotGalleryByUserId
-        return null;
+        // parameter needed
+        return galleryService.getSpotGalleryDto();
     }
 
     /*
@@ -55,27 +56,30 @@ public class GalleryController {
 
     @GetMapping("/routeGallery/{galleryId}")
     public RouteGalleryDto getRouteGalleryByUserId(@PathVariable("galleryId") Long galleryId) {
-        // check if the route is created by the user and
-        return null;
+        return galleryService.getRouteGalleryDto(galleryId);
     }
 
     @PostMapping("/spotGallery")
     public void addSpotToGallery(@RequestBody AddSpotBody addSpotBody) {
-        //
+        // UserSpotEntity userSpot = UserSpotService.getUserSpotById(spotId);
+        galleryService.saveSpotToGallery();
     }
 
     @PostMapping("/routeGallery/{galleryId}")  // 1 = my trip plan; 2 = route collected from others
     public void addRouteToGallery(@PathVariable("galleryId") Long galleryId, @RequestBody AddRouteBody addRouteBody) {
-        //
+        // RouteEntity route = RouteService.getRouteById(addRouteBody.routeId());
+        galleryService.saveRouteToGallery();
     }
 
     @DeleteMapping("/spotGallery/{spotId}")
     public void removeSpotFromGallery(@PathVariable("spotId") Long spotId) {
-
+        // UserSpotEntity userSpot = UserSpotService.getUserSpotById(spotId);
+        galleryService.removeSpotFromGallery();
     }
 
     @DeleteMapping("/routeGallery/{galleryId}/{routeId}")
     public void removeRouteFromGallery(@PathVariable("galleryId") Long galleryId, @PathVariable("routeId") Long routeId) {
-
+        // RouteEntity route = RouteService.getRouteById(addRouteBody.routeId());
+        galleryService.removeRouteFromGallery();
     }
 }
