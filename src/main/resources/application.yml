@@ -2,6 +2,18 @@ spring:
   jackson:
     default-property-inclusion: non_null
     property-naming-strategy: SNAKE_CASE
+#  cloud:
+#    openfeign:
+##      oauth2:
+##        enabled: true
+##        clientRegistrationId: cityGuide
+#      client:
+#        config:
+#          google-api:               # annotated by @FeignClient(name = "google-api") in interface GoogleApiClient
+#            url: https://routes.googleapis.com/directions/v2:computeRoutes
+#            loggerLevel: basic       # clickIn - choices are FULL, HEADER, BASIC, NONE
+##            default-request-headers:
+
   datasource:
     url: jdbc:postgresql://${DATABASE_URL:localhost}:${DATABASE_PORT:5432}/cityguide
     username: ${DATABASE_USERNAME:postgres}

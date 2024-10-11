@@ -1,25 +1,23 @@
 package com.team02.cityguide.service;
 
 import com.team02.cityguide.entity.RouteEntity;
-import com.team02.cityguide.entity.RouteGalleryEntity;
-import com.team02.cityguide.entity.SpotGalleryEntity;
+import com.team02.cityguide.entity.RouteLikeEntity;
+import com.team02.cityguide.entity.SpotLikeEntity;
 import com.team02.cityguide.entity.UserSpotEntity;
 import com.team02.cityguide.repository.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class GalleryService {
 
     private final RouteRepository routeRepository;
-    private final RouteGalleryRepository RouteGalleryRepository;
-    private final SpotGalleryRepository spotGalleryRepository;
+    private final RouteLikeRepository RouteLikeRepository;
+    private final SpotLikeRepository spotLikeRepository;
 
-    public GalleryService(RouteRepository routeRepository, RouteGalleryRepository routeGalleryRepository, SpotGalleryRepository spotGalleryRepository) {
+    public GalleryService(RouteRepository routeRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository) {
         this.routeRepository = routeRepository;
-        this.RouteGalleryRepository = routeGalleryRepository;
-        this.spotGalleryRepository = spotGalleryRepository;
+        this.RouteLikeRepository = routeLikeRepository;
+        this.spotLikeRepository = spotLikeRepository;
     }
 
     // TODO
@@ -33,27 +31,27 @@ public class GalleryService {
     }
 
     // TODO
-    public void removeSpotFromGallery(UserSpotEntity userSpotEntity, SpotGalleryEntity spotGalleryEntity) {
+    public void removeSpotFromGallery(UserSpotEntity userSpotEntity, SpotLikeEntity spotGalleryEntity) {
 
     }
 
     // TODO
-    public void removeRouteFromGallery(RouteEntity routeEntity, RouteGalleryEntity routeGalleryEntity) {
+    public void removeRouteFromGallery(RouteEntity routeEntity, RouteLikeEntity routeGalleryEntity) {
 
     }
 
     // TODO
-    public SpotGalleryEntity getSpotGalleryDto() {
+    public SpotLikeEntity getSpotGalleryDto() {
         return null;
     }
 
     // TODO
-    public RouteGalleryEntity getRouteGalleryDto() {
+    public RouteLikeEntity getRouteGalleryDto() {
         return null;
     }
 
     // TODO
-    public RouteGalleryEntity getMyTripPlanDto() {
+    public RouteLikeEntity getMyTripPlanDto() {
         return null;
     }
 }
