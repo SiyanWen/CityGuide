@@ -39,13 +39,34 @@ public class CustomerService {
     private final UserDetailsManager userDetailsManager;
 
 
+    // public CustomerService(
+    //         CartRepository cartRepository,
+    //         CustomerRepository customerRepository,
+    //         PasswordEncoder passwordEncoder,
+    //         UserDetailsManager userDetailsManager) {
+    //     this.cartRepository = cartRepository;
+    //     this.customerRepository = customerRepository;
+    //     this.passwordEncoder = passwordEncoder;
+    //     this.userDetailsManager = userDetailsManager;
+    // }
+
     public CustomerService(
-            CartRepository cartRepository,
-            CustomerRepository customerRepository,
+            RouteEntity routeEntity,
+            RouteGalleryEntity routeGalleryEntity,
+            SpotGalleryEntity spotGalleryEntity,
+            SpotGalleryEntity spotGalleryEntity,
+            UnitRouteEntity unitRouteEntity,
+            UerEntity uerEntity,
+            UserSpotEntity userSpotEntity,
             PasswordEncoder passwordEncoder,
             UserDetailsManager userDetailsManager) {
-        this.cartRepository = cartRepository;
-        this.customerRepository = customerRepository;
+        this.routeEntity = routeEntity;
+        this.routeGalleryEntity = routeGalleryEntity;
+        this.spotGalleryEntity = spotGalleryEntity;
+        this.spotGalleryEntity = spotGalleryEntity;
+        this.unitRouteEntity = unitRouteEntity;
+        this.uerEntity = uerEntity;
+        this.userSpotEntity = userSpotEntity;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsManager = userDetailsManager;
     }
