@@ -25,8 +25,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerService {
 
 
-    private final CartRepository cartRepository;
-    private final CustomerRepository customerRepository;
+    // private final CartRepository cartRepository;
+    // private final CustomerRepository customerRepository;
+    private final RouteEntity routeEntity;
+    private final RouteGalleryEntity routeGalleryEntity;
+    private final SpotGalleryEntity spotGalleryEntity;
+    private final SpotGalleryEntity spotGalleryEntity;
+    private final UnitRouteEntity unitRouteEntity;
+    private final UerEntity uerEntity;
+    private final UserSpotEntity userSpotEntity;
+    
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsManager userDetailsManager;
 
