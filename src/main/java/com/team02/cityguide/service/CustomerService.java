@@ -1,10 +1,18 @@
-package com.laioffer.onlineorder.service;
+package com.team02.cityguide.service;
 
+// import com.laioffer.onlineorder.entity.CartEntity;
+// import com.laioffer.onlineorder.entity.CustomerEntity;
+// import com.laioffer.onlineorder.repository.CartRepository;
+// import com.laioffer.onlineorder.repository.CustomerRepository;
 
-import com.laioffer.onlineorder.entity.CartEntity;
-import com.laioffer.onlineorder.entity.CustomerEntity;
-import com.laioffer.onlineorder.repository.CartRepository;
-import com.laioffer.onlineorder.repository.CustomerRepository;
+//for cityguide project
+import com.team02.cityguide.entity.RouteEntity;
+import com.team02.cityguide.entity.RouteGalleryEntity;
+import com.team02.cityguide.entity.SpotGalleryEntity;
+import com.team02.cityguide.entity.UnitRouteEntity;
+import com.team02.cityguide.entity.UerEntity;
+import com.team02.cityguide.entity.UserSpotEntity;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
