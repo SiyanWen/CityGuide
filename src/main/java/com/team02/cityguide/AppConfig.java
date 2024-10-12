@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder;
+package com.team02.cityguide;
 
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
