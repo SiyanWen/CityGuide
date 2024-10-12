@@ -46,10 +46,10 @@ public class UserService {
                 .roles("USER")
                 .build();
         userDetailsManager.createUser(user);
-        customerRepository.updateNameByEmail(email);
+        userRepository.updateNameByEmail(email);
 
 
-        CustomerEntity savedCustomer = customerRepository.findByEmail(email);
+        UserEntity savedUser = userRepository.findByEmail(email);
         // CartEntity cart = new CartEntity(null, savedCustomer.id(), 0.0);
         // cartRepository.save(cart);
     }
