@@ -5,16 +5,19 @@ import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.ListCrudRepository;
 
-public interface UserRepository extends ListCrudRepository<UserEntity, Long> {
-    // List<UserEntity> findByFirstName(String firstName);
+import java.util.List;
 
-    // List<UserEntity> findByLastName(String lastName);
+public interface UserRepository extends ListCrudRepository<UserEntity, Long> {
+    List<UserEntity> findByFirstName(String firstName);
+
+    List<UserEntity> findByLastName(String lastName);
     
     UserEntity findByEmail(String email);
 
     void deleteByEmail(String email);
 
     @Modifying
-    @Query("UPDATE users SET user_name = :userName WHERE email = :email")
-    void updateUserNameByEmail(String email, String userName);
+    @Query("UPDATE customers SET first_name = :firstName, last_name = :lastName WHERE email = :email")
+    void updateNameByEmail(String email, String firstName, String lastName);
+
 }
