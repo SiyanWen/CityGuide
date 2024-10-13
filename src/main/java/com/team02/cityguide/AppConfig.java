@@ -27,7 +27,7 @@ public class AppConfig {
     @Bean
     UserDetailsManager users(DataSource dataSource) {
         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        userDetailsManager.setCreateUserSql("INSERT INTO customers (email, password, enabled) VALUES (?,?,?)");
+        userDetailsManager.setCreateUserSql("INSERT INTO users (email, password, enabled) VALUES (?,?,?)");
         userDetailsManager.setCreateAuthoritySql("INSERT INTO authorities (email, authority) values (?,?)");
         userDetailsManager.setUsersByUsernameQuery("SELECT email, password, enabled FROM customers WHERE email = ?");
         userDetailsManager.setAuthoritiesByUsernameQuery("SELECT email, authorities FROM authorities WHERE email = ?");
