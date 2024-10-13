@@ -50,9 +50,20 @@ public class UserService {
 
 
         UserEntity savedUser = userRepository.findByEmail(email);
-        // CartEntity cart = new CartEntity(null, savedCustomer.id(), 0.0);
-        // cartRepository.save(cart);
     }
+
+    public UserDto getUserInfo(String email) {
+    UserEntity user = userRepository.findByEmail(email);
+    if (user != null) {
+        return new UserDto(
+            user.getUsername(),
+            user.getEmail(),
+            user.getPassword(), 
+            user.getDestinationCity()
+        );
+    }
+    return null;  
+}
 
    
 }
