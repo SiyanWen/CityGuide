@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 public class UserController {
@@ -18,14 +22,25 @@ public class UserController {
 
 
  public UserController(UserService userService) {
- this.userService = userService;
+     this.userService = userService;
+ }
+
+ @GetMapping("/user/info")
+ public UserDto getUserInfo() {
+     String email = getCurrentAuthenticatedUserEmail();
+     return userService.getUserInfo(email);
+ }
+
+ private String getCurrentAuthenticatedUserEmail() {
+     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+     return authentication.getName();  // Assuming the email is used as the username
  }
 
 
  @PostMapping("/signup")
  @ResponseStatus(value = HttpStatus.CREATED)
  public void signUp(@RequestBody RegisterBody body) {
- userService.signUp(body.email(), body.password(), body.firstName(), body.lastName());
+     userService.signUp(body.email(), body.password(), body.firstName(), body.lastName());
  }
 
  // Sign out function
