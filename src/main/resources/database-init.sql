@@ -65,6 +65,7 @@ CREATE TABLE user_spots
     cost            NUMERIC,
     duration_time   NUMERIC,
     opening_hours   JSONB,
+    type            JSONB,
     cover_img_url   TEXT,
     reviews         TEXT
 );

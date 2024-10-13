@@ -22,7 +22,8 @@ public record UserSpotEntity(
     Double cost,
     Double rating,
     Integer ratingCount,
-    String openingHours,      // check how to save to jsonb from string or use converted that jsonb into structured str
+    String openingHours,      // how to save to jsonb: map
+    String type,
     String coverImgUrl,
     String reviews
 ) {
