@@ -1,5 +1,6 @@
 package com.team02.cityguide.controller;
 
+import com.team02.cityguide.entity.UserSpotEntity;
 import com.team02.cityguide.model.AddRouteBody;
 import com.team02.cityguide.model.AddSpotBody;
 import com.team02.cityguide.model.CartDto;
@@ -38,7 +39,7 @@ public class CartController {
 
     @DeleteMapping("/cart/spot/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
     public void removeSpotFromCart(@PathVariable("spotId") Long spotId) {
-        // UserSpotEntity userSpot = UserSpotService.getUserSpotById(spotId);
-        cartService.removeSpotFromCart();
+         
+        cartService.removeSpotFromCart(spotId);
     }
 }
