@@ -27,4 +27,12 @@ public class UserController {
  public void signUp(@RequestBody RegisterBody body) {
  userService.signUp(body.email(), body.password(), body.firstName(), body.lastName());
  }
+
+ // Sign out function
+ @PostMapping("/signout")
+ @ResponseStatus(value = HttpStatus.OK)
+ public void signOut() {
+     // Clear the SecurityContext to effectively log out the user
+     SecurityContextHolder.clearContext();
+ }
 }
