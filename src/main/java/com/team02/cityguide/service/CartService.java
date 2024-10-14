@@ -2,6 +2,8 @@ package com.team02.cityguide.service;
 
 import com.team02.cityguide.entity.RouteEntity;
 import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.model.AddSpotBody;
+import com.team02.cityguide.model.CartDto;
 import com.team02.cityguide.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -22,21 +24,26 @@ public class CartService {
     }
 
     // TODO
-    public List<UserSpotEntity> getCart() {
+    public CartDto getCart(Long userId) {
         return null;
     }
 
     // TODO
-    public void addSpotToCart(Long spotId) {
+    public void addSpotToCart(Long userId, AddSpotBody addSpotBody) {
 
     }
 
-    public void addRouteToCart(RouteEntity routeEntity) {
+    public void addRouteToCart(Long userId, Long routeId) {
 
     }
 
     // TODO
-    public void removeSpotFromCart(UserSpotEntity userSpotEntity) {
+    public void removeSpotFromCart(Long userId, Long spotId) {
+
+    }
+
+    // TODO
+    public void clearCart(Long userId) {
 
     }
 }
