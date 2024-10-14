@@ -60,6 +60,7 @@ public class UserService {
 //      TODO: update other table and change the save
         //      FIXME: what is spotID here!!!!!
 
+
 //        RouteEntity routeEntity = new RouteEntity(4L, savedUser.id(), "routename", "routeDes", 20.0, "car", 2.0, 1);
 //        routeRepository.save(routeEntity);
 //        RouteLikeEntity routeLikeEntity = new RouteLikeEntity(4L, savedUser.id(), routeEntity.id());
