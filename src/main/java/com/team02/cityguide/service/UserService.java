@@ -1,7 +1,7 @@
 package com.team02.cityguide.service;
 
-import com.team02.cityguide.entity.UserEntity;
-import com.team02.cityguide.repository.UserRepository;
+import com.team02.cityguide.entity.*;
+import com.team02.cityguide.repository.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,19 +13,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
-import java.util.Objects;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsManager userDetailsManager;
+    private final RouteRepository routeRepository;
+    private final RouteLikeRepository routeLikeRepository;
+    private final SpotLikeRepository spotLikeRepository;
+    private final CartSpotRepository cartSpotRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager, RouteRepository routeRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository, CartSpotRepository cartSpotRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsManager = userDetailsManager;
+        this.routeRepository = routeRepository;
+        this.routeLikeRepository = routeLikeRepository;
+        this.spotLikeRepository = spotLikeRepository;
+        this.cartSpotRepository = cartSpotRepository;
     }
 
     public UserEntity findByEmail(String email) {
@@ -51,7 +57,17 @@ public class UserService {
         userRepository.updateCityIDByEmail(cityId, email);
         userRepository.updateProfileURLByEmail(profileURL, email);
         UserEntity savedUser = userRepository.findByEmail(email);
-//      TODO: create other
+//      TODO: update other table and change the save
+        //      FIXME: what is spotID here!!!!!
+
+//        RouteEntity routeEntity = new RouteEntity(4L, savedUser.id(), "routename", "routeDes", 20.0, "car", 2.0, 1);
+//        routeRepository.save(routeEntity);
+//        RouteLikeEntity routeLikeEntity = new RouteLikeEntity(4L, savedUser.id(), routeEntity.id());
+//        routeLikeRepository.save(routeLikeEntity);
+//        SpotLikeEntity spotLikeEntity = new SpotLikeEntity(4L, savedUser.id(), 2L);
+//        spotLikeRepository.save(spotLikeEntity);
+//        CartSpotEntity cartSpotEntity = new CartSpotEntity(4L, "GID", savedUser.id(), "name", "address", 5.0, 200, 55.0, 2, "hours", 24.0, 27.0, "IMG");
+//        cartSpotRepository.save(cartSpotEntity);
     }
 
 //    @Transactional

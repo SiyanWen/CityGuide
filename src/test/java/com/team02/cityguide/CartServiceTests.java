@@ -38,7 +38,7 @@ public class CartServiceTests {
     @Test
     void getCart_test(){
         List<UserSpotEntity> userSpotEntities = List.of(
-                new UserSpotEntity(1L, 1L, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+                new UserSpotEntity(1L, 1L, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
         );
     }
 

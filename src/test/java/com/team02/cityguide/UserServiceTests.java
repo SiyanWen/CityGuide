@@ -1,7 +1,7 @@
 package com.team02.cityguide;
 
 import com.team02.cityguide.entity.UserEntity;
-import com.team02.cityguide.repository.UserRepository;
+import com.team02.cityguide.repository.*;
 import com.team02.cityguide.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,11 +27,23 @@ public class UserServiceTests {
     @Mock
     UserDetailsManager userDetailsManager;
 
+    @Mock
+    RouteRepository routeRepository;
+
+    @Mock
+    RouteLikeRepository routeLikeRepository;
+
+    @Mock
+    SpotLikeRepository spotLikeRepository;
+
+    @Mock
+    CartSpotRepository cartSpotRepository;
+
     private UserService userService;
 
     @BeforeEach
     public void setUp() {
-        userService = new UserService(userRepository, passwordEncoder, userDetailsManager);
+        userService = new UserService(userRepository, passwordEncoder, userDetailsManager, routeRepository, routeLikeRepository, spotLikeRepository, cartSpotRepository);
     }
 
     @Test

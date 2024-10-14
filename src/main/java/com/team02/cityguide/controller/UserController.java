@@ -22,9 +22,9 @@ public class UserController {
         userService.signup(body.email(), body.password(), body.userName(), body.cityId(), body.profileURL());
     }
 
-    @PostMapping("/signin")
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void signIn(@RequestBody SignInBody body) {
-
-    }
+//    @PostMapping("/signin")
+//    @ResponseStatus(value = HttpStatus.ACCEPTED)
+//    public void signIn(@RequestBody SignInBody body) {
+//
+//    }
 }
