@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.client.RestTemplate;
 
 
 import javax.sql.DataSource;
@@ -22,7 +23,10 @@ import javax.sql.DataSource;
 
 @Configuration
 public class AppConfig {
-
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     @Bean
     UserDetailsManager users(DataSource dataSource) {
