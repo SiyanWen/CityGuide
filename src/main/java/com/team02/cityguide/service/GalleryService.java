@@ -4,6 +4,9 @@ import com.team02.cityguide.entity.RouteEntity;
 import com.team02.cityguide.entity.RouteLikeEntity;
 import com.team02.cityguide.entity.SpotLikeEntity;
 import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.model.AddSpotBody;
+import com.team02.cityguide.model.RouteGalleryDto;
+import com.team02.cityguide.model.SpotGalleryDto;
 import com.team02.cityguide.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -21,37 +24,37 @@ public class GalleryService {
     }
 
     // TODO
-    public void saveSpotToGallery(UserSpotEntity userSpotEntity) {
+    public void saveSpotToGallery(Long userId, AddSpotBody addSpotBody) {
 
     }
 
     // TODO
-    public void saveRouteToGallery(RouteEntity routeEntity) {
+    public void saveRouteToGallery(Long userId, Long galleryId, Long routeId) {
 
     }
 
     // TODO
-    public void removeSpotFromGallery(UserSpotEntity userSpotEntity, SpotLikeEntity spotGalleryEntity) {
+    public void saveRouteToMyTripPlan(Long userId, Long galleryId, RouteEntity routeEntity) {
 
     }
 
     // TODO
-    public void removeRouteFromGallery(RouteEntity routeEntity, RouteLikeEntity routeGalleryEntity) {
+    public void removeSpotFromGallery(Long userId, Long spotId) {
 
     }
 
     // TODO
-    public SpotLikeEntity getSpotGalleryDto() {
+    public void removeRouteFromGallery(Long userId, Long galleryId, Long routeId) {
+
+    }
+
+    // TODO
+    public SpotGalleryDto getSpotGalleryDto(Long userId) {
         return null;
     }
 
     // TODO
-    public RouteLikeEntity getRouteGalleryDto() {
-        return null;
-    }
-
-    // TODO
-    public RouteLikeEntity getMyTripPlanDto() {
+    public RouteGalleryDto getRouteGalleryDto(Long userId, Long galleryId) {
         return null;
     }
 }

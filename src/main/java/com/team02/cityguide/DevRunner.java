@@ -1,6 +1,9 @@
 package com.team02.cityguide;
 
 import com.team02.cityguide.external.GoogleApiService;
+import com.team02.cityguide.external.RouteRequestBody;
+import com.team02.cityguide.external.RouteResponseBody;
+import com.team02.cityguide.external.WayPoint;
 import com.team02.cityguide.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DevRunner implements ApplicationRunner {
-    // TODO
+
     private static final Logger logger = LoggerFactory.getLogger(DevRunner.class);
     private final GoogleApiService googleApiService;
     private final UserService userService;
@@ -22,8 +25,17 @@ public class DevRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        String routes = googleApiService.computeRoutes();
-//        logger.info(routes);
-        userService.signup("test1@com", "123", "userName", "cityID1", "www.test1.com");
+        // Test google computeRoutes() API
+        RouteRequestBody routeRequestBody = new RouteRequestBody(
+                new WayPoint("ChIJf5Esy4cUkFQRKK6M06RW2YI"),      // Nordheim Court
+                new WayPoint("ChIJV4bOpvcVkFQRJA-LICOZe6Y"),      // Maple hall
+                null,                                                 // trafficMode
+                null
+        );
+        RouteResponseBody routes = googleApiService.computeRoutes(routeRequestBody);
+        logger.info("Received route response from google computeRoutes: {}", routes);
+
+        // Test user signUp
+        userService.signUp("foo@mail.com", "123456", "Foo", "San Francisco");
     }
 }

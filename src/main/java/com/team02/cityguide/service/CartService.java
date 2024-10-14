@@ -1,11 +1,10 @@
 package com.team02.cityguide.service;
 
 import com.team02.cityguide.entity.RouteEntity;
-import com.team02.cityguide.entity.UserEntity;
 import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.model.AddSpotBody;
+import com.team02.cityguide.model.CartDto;
 import com.team02.cityguide.repository.*;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,29 +24,26 @@ public class CartService {
     }
 
     // TODO
-    public List<UserSpotEntity> getCartByCartId(Long cartId, @AuthenticationPrincipal User user) {
-        return userSpotRepository.findByCartId(cartId);
-    }
-
-    public List<UserSpotEntity> getCartByRouteId(Long routeId) {
-        return userSpotRepository.findByRouteId(routeId);
-    }
-
-    public List<UserSpotEntity> getCartByGalleryId(Long galleryId) {
-        return userSpotRepository.findByGalleryId(galleryId);
+    public CartDto getCart(Long userId) {
+        return null;
     }
 
     // TODO
-    public void addSpotToCart(Long spotId) {
-//        cartSpotRepository.save(spotLikeRepository.findById(spotId));
+    public void addSpotToCart(Long userId, AddSpotBody addSpotBody) {
+
     }
 
-    public void addRouteToCart(RouteEntity routeEntity) {
+    public void addRouteToCart(Long userId, Long routeId) {
 
     }
 
     // TODO
-    public void removeSpotFromCart(UserSpotEntity userSpotEntity) {
+    public void removeSpotFromCart(Long userId, Long spotId) {
+
+    }
+
+    // TODO
+    public void clearCart(Long userId) {
 
     }
 }

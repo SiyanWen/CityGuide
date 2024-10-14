@@ -1,7 +1,10 @@
 package com.team02.cityguide.service;
 
+import com.team02.cityguide.entity.CartSpotEntity;
 import com.team02.cityguide.entity.RouteEntity;
 import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.model.RouteDto;
+import com.team02.cityguide.model.SurveyBody;
 import com.team02.cityguide.repository.CartSpotRepository;
 import com.team02.cityguide.repository.RouteRepository;
 import com.team02.cityguide.repository.UnitRouteRepository;
@@ -31,12 +34,12 @@ public class RouteService {
     }
 
     // TODO
-    public List<RouteEntity> planRoute() {
+    public List<RouteDto> planRoute(List<CartSpotEntity> cartSpots, SurveyBody surveyBody) {
         return null;
     }
 
     // TODO
-    private List<UserSpotEntity> permutation() {
+    private List<Long> permutation() {
         return null;
-    }
+    }           // List<UserSpotEntityId>
 }
