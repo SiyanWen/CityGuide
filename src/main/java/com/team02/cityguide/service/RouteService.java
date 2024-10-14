@@ -7,6 +7,7 @@ import com.team02.cityguide.repository.RouteRepository;
 import com.team02.cityguide.repository.UnitRouteRepository;
 import com.team02.cityguide.repository.UserSpotRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,11 @@ public class RouteService {
         this.routeRepository = routeRepository;
         this.unitRouteRepository = unitRouteRepository;
         this.userSpotRepository = userSpotRepository;
+    }
+
+    @Transactional
+    public RouteEntity updateRoute(RouteEntity route) {
+        return routeRepository.save(route);  // Ensure this is within a transaction
     }
 
     // TODO
