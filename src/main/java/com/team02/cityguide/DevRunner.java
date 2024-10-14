@@ -1,7 +1,8 @@
 package com.team02.cityguide;
 
 import com.team02.cityguide.external.GoogleApiService;
-import com.team02.cityguide.external.RouteRequest;
+import com.team02.cityguide.external.RouteRequestBody;
+import com.team02.cityguide.external.RouteResponseBody;
 import com.team02.cityguide.external.WayPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +22,13 @@ public class DevRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        RouteRequest routeRequest = new RouteRequest(
+        RouteRequestBody routeRequestBody = new RouteRequestBody(
                 new WayPoint("ChIJf5Esy4cUkFQRKK6M06RW2YI"),      // Nordheim Court
                 new WayPoint("ChIJV4bOpvcVkFQRJA-LICOZe6Y"),      // Maple hall
-                "DRIVE"                                                  // trafficMode
+                null,                                                 // trafficMode
+                null
         );
-        String routes = googleApiService.computeRoutes(routeRequest);
-        logger.info(routes);
+        RouteResponseBody routes = googleApiService.computeRoutes(routeRequestBody);
+        logger.info("Received route response from google computeRoutes: {}", routes);
     }
 }

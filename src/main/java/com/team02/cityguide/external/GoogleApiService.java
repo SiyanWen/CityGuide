@@ -18,15 +18,16 @@ public class GoogleApiService {
         this.restTemplate = restTemplate;
     }
 
-    public String computeRoutes(RouteRequest routeRequest) {
+    public RouteResponseBody computeRoutes(RouteRequestBody routeRequestBody) {
 
         String url = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
         // Create a Java object representing the request body
-        RouteRequest routeRequestFormatted = new RouteRequest(
-                routeRequest.origin(),      // Nordheim Court
-                routeRequest.destination(),      // Maple hall
-                routeRequest.travelMode() == null ? "DRIVE" : routeRequest.travelMode()     // trafficMode
+        RouteRequestBody routeRequestBodyFormatted = new RouteRequestBody(
+                routeRequestBody.origin(),      // Nordheim Court
+                routeRequestBody.destination(),      // Maple hall
+                routeRequestBody.travelMode() == null ? "DRIVE" : routeRequestBody.travelMode(),     // trafficMode
+                routeRequestBody.computeAlternativeRoutes() == null ? false : routeRequestBody.computeAlternativeRoutes()
         );
 
         // Create headers
@@ -34,14 +35,18 @@ public class GoogleApiService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 //        headers.setBearerAuth("AIzaSyDpTfhoLV3P_o68qc-i_yHf_IOc8LIrIW8");
         headers.add("X-Goog-Api-Key", "AIzaSyDpTfhoLV3P_o68qc-i_yHf_IOc8LIrIW8");
-        headers.add("X-Goog-FieldMask", "*");
+        headers.add("X-Goog-FieldMask", "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.description");
 
         // Create HttpEntity with the request body and headers
-        HttpEntity<RouteRequest> entity = new HttpEntity<>(routeRequest, headers);
+        HttpEntity<RouteRequestBody> entity = new HttpEntity<>(routeRequestBody, headers);
 
         // Send POST request
-        ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
-        return response.getBody();
+        ResponseEntity<RouteResponseBody> response = restTemplate.postForEntity(url, entity, RouteResponseBody.class);
 
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();  // Returns the RoutesResponse object
+        } else {
+            throw new RuntimeException("Failed to fetch routes when calling google computeRoutes() api");
+        }
     }
 }
