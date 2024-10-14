@@ -24,5 +24,5 @@ public interface UserSpotRepository extends ListCrudRepository<UserSpotEntity, L
 
     @Modifying
     @Query("DELETE FROM user_spots WHERE original_gid = :originalGid")
-    void deleteByUserId(Long originalGid);
+    void deleteByUserId(String originalGid);
 }
