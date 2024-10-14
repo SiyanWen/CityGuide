@@ -1,17 +1,16 @@
 package com.team02.cityguide.repository;
 
-import com.team02.cityguide.entity.RouteGalleryEntity;
+import com.team02.cityguide.entity.CartSpotEntity;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface RouteGalleryRepository extends ListCrudRepository<RouteGalleryEntity, Long> {
-
-    RouteGalleryEntity findByUserId(Long userId);
+public interface CartSpotRepository extends ListCrudRepository<CartSpotEntity, Long> {
+    List<CartSpotEntity> findByUserId(Long userId);
 
     @Modifying
-    @Query("DELETE FROM route_galleries WHERE user_id = :userId")
+    @Query("DELETE FROM cart_spots WHERE user_id = :userId")
     void deleteByUserId(Long userId);
 }
