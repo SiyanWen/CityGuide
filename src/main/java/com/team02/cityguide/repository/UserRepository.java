@@ -8,10 +8,8 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface UserRepository extends ListCrudRepository<UserEntity, Long> {
-    List<UserEntity> findByFirstName(String firstName);
+    List<UserEntity> findByUserName(String userName);
 
-    List<UserEntity> findByLastName(String lastName);
-    
     UserEntity findByEmail(String email);
 
     void deleteByEmail(String email);
