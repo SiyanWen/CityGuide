@@ -56,7 +56,6 @@ CREATE TABLE user_spots
     latitude        NUMERIC             NOT NULL,
     longitude       NUMERIC             NOT NULL,
     route_id        INTEGER,
-    cart_id         INTEGER,
     name            TEXT                NOT NULL,
     address         TEXT                NOT NULL,
     description     TEXT,
@@ -65,7 +64,7 @@ CREATE TABLE user_spots
     cost            NUMERIC,
     duration_time   NUMERIC,
     opening_hours   JSON,
-    type            JSON,
+    types            JSON,
     cover_img_url   TEXT,
     reviews         TEXT
 );

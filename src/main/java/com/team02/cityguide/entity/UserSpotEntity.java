@@ -12,13 +12,11 @@ import java.util.Map;
 
 @Table("user_spots")
 @Convert(attributeName = "openingHours", converter = JsonType.class)
-@Convert(attributeName = "type", converter = JsonType.class)
+@Convert(attributeName = "types", converter = JsonType.class)
 public record UserSpotEntity(
         @Id
         Long id,
         Long routeId,
-        Long cartId,
-        Long galleryId,
         String originalGid,
         String name,
         String address,
@@ -32,7 +30,7 @@ public record UserSpotEntity(
         @JdbcTypeCode(SqlTypes.JSON)
         Map<String, Object> openingHours,      // how to save to jsonb: map
         @JdbcTypeCode(SqlTypes.JSON)
-        Map<String, List<String>> type,
+        Map<String, List<String>> types,
         String coverImgUrl,
         String reviews
 ) {

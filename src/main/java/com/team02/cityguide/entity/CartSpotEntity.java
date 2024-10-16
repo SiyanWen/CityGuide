@@ -7,6 +7,8 @@ import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.Map;
+
 @Table("cart_spots")
 @Convert(attributeName = "openingHours", converter = JsonType.class)
 public record CartSpotEntity(
@@ -21,7 +23,7 @@ public record CartSpotEntity(
     Double cost,
     Integer durationTime,
     @JdbcTypeCode(SqlTypes.JSON)
-    String openingHours,
+    Map<String, Object> openingHours,
     Double latitude,
     Double longitude,
     String coverImgUrl
