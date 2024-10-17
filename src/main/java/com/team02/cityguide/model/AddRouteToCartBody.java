@@ -1,6 +1,6 @@
 package com.team02.cityguide.model;
 
-public record AddRouteBody(
+public record AddRouteToCartBody(
     Long routeId
 ) {
 }

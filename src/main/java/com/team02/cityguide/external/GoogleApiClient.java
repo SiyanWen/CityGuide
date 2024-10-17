@@ -24,7 +24,7 @@ package com.team02.cityguide.external;
 //        String url = "https://routes.googleapis.com/directions/v2:computeRoutes";
 //
 //        // Create a Java object representing the request body
-//        RouteRequest routeRequest = new RouteRequest(
+//        RouteRequestBody routeRequest = new RouteRequestBody(
 //                "ChIJf5Esy4cUkFQRKK6M06RW2YI",      // Nordheim Court
 //                "ChIJV4bOpvcVkFQRJA-LICOZe6Y",      // Maple hall
 //                "DRIVE"                             // travelMode
