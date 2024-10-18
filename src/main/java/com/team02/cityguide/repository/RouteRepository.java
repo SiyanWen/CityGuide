@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RouteRepository extends ListCrudRepository<RouteEntity, Long> {
 
-    List<RouteEntity> findByName(String name); // <2>
+
 
     @Modifying
     @Query("DELETE FROM routes WHERE name = :name")

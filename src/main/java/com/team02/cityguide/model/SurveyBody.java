@@ -13,11 +13,13 @@ package com.team02.cityguide.model;
  *       total
  * */
 
+import com.team02.cityguide.entity.UserSpotEntity;
+
 import java.util.List;
 
 public record SurveyBody(
         Integer durationTime,
-        List<OriginalSpot> startEndPoints,
+        List<Long> startEndPoints,          // spot_ids
         List<String> trafficModes,
         Integer spotsPerDay,
         Budget budget
