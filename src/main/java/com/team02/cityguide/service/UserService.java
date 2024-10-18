@@ -50,7 +50,6 @@ public class UserService {
                 .username(email)
                         .password(passwordEncoder.encode(password))
                                 .roles("USER")
-//                                .disabled(false)
                                         .build();
         userDetailsManager.createUser(user);
         userRepository.updateUserNameByEmail(email, userName);
@@ -60,27 +59,5 @@ public class UserService {
 //      TODO: update other table and change the save
         //      FIXME: what is spotID here!!!!!
 
-//        RouteEntity routeEntity = new RouteEntity(4L, savedUser.id(), "routename", "routeDes", 20.0, "car", 2.0, 1);
-//        routeRepository.save(routeEntity);
-//        RouteLikeEntity routeLikeEntity = new RouteLikeEntity(4L, savedUser.id(), routeEntity.id());
-//        routeLikeRepository.save(routeLikeEntity);
-//        SpotLikeEntity spotLikeEntity = new SpotLikeEntity(4L, savedUser.id(), 2L);
-//        spotLikeRepository.save(spotLikeEntity);
-//        CartSpotEntity cartSpotEntity = new CartSpotEntity(4L, "GID", savedUser.id(), "name", "address", 5.0, 200, 55.0, 2, "hours", 24.0, 27.0, "IMG");
-//        cartSpotRepository.save(cartSpotEntity);
     }
-
-//    @Transactional
-//    public Boolean login(String email, String password) {
-//        UserEntity user = userRepository.findByEmail(email);
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found");
-//        }
-//        //TODO: change to encoded security
-////        if (user.password() != passwordEncoder.encode(password)) {
-////            throw new BadCredentialsException("Bad credentials");
-////        }
-//
-//        return password.equals(user.password());
-//    }
 }
