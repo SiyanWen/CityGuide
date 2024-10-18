@@ -12,11 +12,7 @@ public interface UserSpotRepository extends ListCrudRepository<UserSpotEntity, L
 
     UserSpotEntity findByOriginalGid(String originalGid);
 
-    List<UserSpotEntity> findByCartId(Long cartId);
-
     List<UserSpotEntity> findByRouteId(Long routeId);
-
-    List<UserSpotEntity> findByGalleryId(Long galleryId);
 
     @Modifying
     @Query("DELETE FROM user_spots WHERE id = :id")
