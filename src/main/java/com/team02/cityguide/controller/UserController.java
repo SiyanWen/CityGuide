@@ -41,7 +41,7 @@ public class UserController {
      @PostMapping("/signup")
      @ResponseStatus(value = HttpStatus.CREATED)
      public void signUp(@RequestBody RegisterBody body) {
-         userService.signUp(body.email(), body.password(), body.userName(), body.cityId());
+         userService.signup(body.email(), body.password(), body.userName(), body.cityId());
      }
 
      // Sign out function

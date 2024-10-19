@@ -1,6 +1,7 @@
 package com.team02.cityguide.service;
 
 import com.team02.cityguide.entity.*;
+import com.team02.cityguide.model.UserDto;
 import com.team02.cityguide.repository.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.User;
@@ -19,19 +20,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsManager userDetailsManager;
-    private final RouteRepository routeRepository;
-    private final RouteLikeRepository routeLikeRepository;
-    private final SpotLikeRepository spotLikeRepository;
-    private final CartSpotRepository cartSpotRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager, RouteRepository routeRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository, CartSpotRepository cartSpotRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsManager userDetailsManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsManager = userDetailsManager;
-        this.routeRepository = routeRepository;
-        this.routeLikeRepository = routeLikeRepository;
-        this.spotLikeRepository = spotLikeRepository;
-        this.cartSpotRepository = cartSpotRepository;
     }
 
     public UserEntity findByEmail(String email) {
@@ -43,8 +36,8 @@ public class UserService {
     }
 
     @Transactional
-    public void signup(String email, String password, String userName, String cityId, String profileURL) {
-        System.out.printf("receive fro signup");
+    public void signup(String email, String password, String userName, String cityId) {
+        System.out.print("receive fro signup");
         email = email.toLowerCase();
         UserDetails user = User.builder()
                 .username(email)
@@ -54,10 +47,19 @@ public class UserService {
         userDetailsManager.createUser(user);
         userRepository.updateUserNameByEmail(email, userName);
         userRepository.updateCityIDByEmail(cityId, email);
-        userRepository.updateProfileURLByEmail(profileURL, email);
-        UserEntity savedUser = userRepository.findByEmail(email);
-//      TODO: update other table and change the save
-        //      FIXME: what is spotID here!!!!!
+//        UserEntity savedUser = userRepository.findByEmail(email);
+    }
 
+    public UserDto getUserInfo(String email) {
+        UserEntity user = userRepository.findByEmail(email);
+        if (user != null) {
+            return new UserDto(
+                    user.userName(),
+                    user.email(),
+                    user.password(),
+                    user.cityId()
+            );
+        }
+        return null;
     }
 }

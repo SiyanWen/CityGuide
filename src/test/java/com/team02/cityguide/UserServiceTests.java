@@ -43,7 +43,7 @@ public class UserServiceTests {
 
     @BeforeEach
     public void setUp() {
-        userService = new UserService(userRepository, passwordEncoder, userDetailsManager, routeRepository, routeLikeRepository, spotLikeRepository, cartSpotRepository);
+        userService = new UserService(userRepository, passwordEncoder, userDetailsManager);
     }
 
     @Test
