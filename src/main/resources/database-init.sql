@@ -64,7 +64,7 @@ CREATE TABLE user_spots
     cost            NUMERIC,
     duration_time   NUMERIC,
     opening_hours   JSON,
-    types            JSON,
+    types           JSON,
     cover_img_url   TEXT,
     reviews         TEXT
 );
@@ -102,6 +102,7 @@ CREATE TABLE unit_routes
     id                  SERIAL PRIMARY KEY NOT NULL,
     route_id            INTEGER            NOT NULL,
     google_polyline_id  TEXT UNIQUE        NOT NULL,
+    at_which_day        INTEGER            NOT NULL,
     startspot_id        INTEGER            NOT NULL,
     endspot_id          INTEGER            NOT NULL,
     traffic_mode        VARCHAR(50)        NOT NULL,

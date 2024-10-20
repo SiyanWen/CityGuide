@@ -16,23 +16,17 @@ import java.util.Map;
 public class CartService {
     private final CartSpotRepository cartSpotRepository;
     private final UserSpotRepository userSpotRepository;
-    private final RouteLikeRepository routeLikeRepository;
-    private final SpotLikeRepository spotLikeRepository;
 
-    public CartService(CartSpotRepository cartSpotRepository, UserSpotRepository userSpotRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository) {
+    public CartService(CartSpotRepository cartSpotRepository, UserSpotRepository userSpotRepository) {
         this.cartSpotRepository = cartSpotRepository;
         this.userSpotRepository = userSpotRepository;
-        this.routeLikeRepository = routeLikeRepository;
-        this.spotLikeRepository = spotLikeRepository;
     }
 
-    // TODO
     public CartDto getCart(Long userId) {
         List<CartSpotEntity> cartSpots = cartSpotRepository.findByUserId(userId);
         return new CartDto(userId, cartSpots);
     }
 
-    // TODO
     public void addSpotToCart(Long userId, AddSpotBody addSpotBody) {
         UserSpotEntity userSpot=userSpotRepository.findByOriginalGid(addSpotBody.originalGid());
         if(userSpot==null) {
@@ -45,10 +39,8 @@ public class CartService {
             if (cartSpot == null) {
                 CartSpotEntity newCartSpot = new CartSpotEntity(null,addSpotBody.originalGid(),userId,addSpotBody.name(),addSpotBody.address(),addSpotBody.rating(),addSpotBody.ratingCount(),addSpotBody.cost(),addSpotBody.durationTime(),addSpotBody.openingHours(),addSpotBody.latitude(),addSpotBody.longitude(),addSpotBody.coverImgUrl());
                 cartSpotRepository.save(newCartSpot);
-
             }
         }
-
     }
 
     public void addRouteToCart(Long userId, Long routeId) {
@@ -59,7 +51,6 @@ public class CartService {
                 CartSpotEntity newCartSpot = new CartSpotEntity(null, userSpot.originalGid(), userId, userSpot.name(), userSpot.address(), userSpot.rating(), userSpot.ratingCount(), userSpot.cost(), userSpot.durationTime(), userSpot.openingHours(), userSpot.latitude(), userSpot.longitude(), userSpot.coverImgUrl());
                 cartSpotRepository.save(newCartSpot);
             }
-
         }
     }
 
