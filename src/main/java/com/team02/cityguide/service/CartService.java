@@ -22,13 +22,11 @@ public class CartService {
         this.userSpotRepository = userSpotRepository;
     }
 
-    // TODO
     public CartDto getCart(Long userId) {
         List<CartSpotEntity> cartSpots = cartSpotRepository.findByUserId(userId);
         return new CartDto(userId, cartSpots);
     }
 
-    // TODO
     public void addSpotToCart(Long userId, AddSpotBody addSpotBody) {
         UserSpotEntity userSpot=userSpotRepository.findByOriginalGid(addSpotBody.originalGid());
         if(userSpot==null) {
@@ -41,7 +39,6 @@ public class CartService {
             if (cartSpot == null) {
                 CartSpotEntity newCartSpot = new CartSpotEntity(null,addSpotBody.originalGid(),userId,addSpotBody.name(),addSpotBody.address(),addSpotBody.rating(),addSpotBody.ratingCount(),addSpotBody.cost(),addSpotBody.durationTime(),addSpotBody.openingHours(),addSpotBody.latitude(),addSpotBody.longitude(),addSpotBody.coverImgUrl());
                 cartSpotRepository.save(newCartSpot);
-
             }
         }
     }

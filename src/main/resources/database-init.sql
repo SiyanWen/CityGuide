@@ -113,3 +113,58 @@ CREATE TABLE unit_routes
     CONSTRAINT fk_unit_route2 FOREIGN KEY (startspot_id) REFERENCES user_spots (id) ON DELETE CASCADE,
     CONSTRAINT fk_unit_route3 FOREIGN KEY (endspot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
+
+INSERT INTO users (email, enabled, password, user_name, city_id, profile_pic_url)
+VALUES
+    ('john.doe@example.com', TRUE, 'hashed_password_123', 'John Doe', 'C001', 'https://example.com/images/john.jpg'),
+    ('jane.smith@example.com', TRUE, 'hashed_password_456', 'Jane Smith', 'C002', 'https://example.com/images/jane.jpg'),
+    ('robert.james@example.com', FALSE, 'hashed_password_789', 'Robert James', 'C003', 'https://example.com/images/robert.jpg');
+
+
+INSERT INTO authorities (email, authority)
+VALUES
+    ('john.doe@example.com', 'ROLE_USER'),
+    ('jane.smith@example.com', 'ROLE_ADMIN'),
+    ('robert.james@example.com', 'ROLE_USER');
+
+
+INSERT INTO routes (creator_id, name, description, distance, traffic_mode, budget, duration_time)
+VALUES
+    (1, 'Mountain Adventure', 'A scenic mountain trail', 12.5, 'Walking', 50.00, 3.5),
+    (2, 'City Tour', 'A tour of downtown attractions', 5.2, 'Driving', 30.00, 1.5),
+    (1, 'Beach Path', 'A relaxing route along the beach', 8.7, 'Cycling', 20.00, 2.0);
+
+
+INSERT INTO route_likes (user_id, route_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 1),
+    (1, 3);
+
+
+INSERT INTO user_spots (original_gid, latitude, longitude, route_id, name, address, description, rating, rating_count, cost, duration_time, opening_hours, cover_img_url, reviews)
+VALUES
+    ('GID001', 40.7128, -74.0060, 1, 'Central Park', 'NYC, NY', 'Famous urban park', 4.8, 1200, 0, 2.5, '{"Mon-Fri": "06:00-22:00"}', 'https://example.com/images/centralpark.jpg', 'Great place to relax'),
+    ('GID002', 34.0522, -118.2437, 2, 'Hollywood Sign', 'LA, CA', 'Iconic landmark', 4.6, 800, 0, 1.5, '{"Mon-Sun": "Open 24 hours"}', 'https://example.com/images/hollywood.jpg', 'Must-visit place'),
+    ('GID003', 37.7749, -122.4194, 3, 'Golden Gate Bridge', 'SF, CA', 'Famous suspension bridge', 4.9, 1500, 0, 2.0, '{"Mon-Sun": "Open 24 hours"}', 'https://example.com/images/goldengate.jpg', 'Stunning views');
+
+
+INSERT INTO spot_likes (user_id, spot_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (1, 3),
+    (3, 1);
+
+
+INSERT INTO cart_spots (original_gid, user_id, name, address, rating, rating_count, cost, duration_time, cover_img_url, opening_hours, latitude, longitude)
+VALUES
+    ('GID001', 1, 'Central Park', 'NYC, NY', 4.8, 1200, 0, 2.5, 'https://example.com/images/centralpark.jpg', '{"Mon-Fri": "06:00-22:00"}', 40.7128, -74.0060),
+    ('GID002', 2, 'Hollywood Sign', 'LA, CA', 4.6, 800, 0, 1.5, 'https://example.com/images/hollywood.jpg', '{"Mon-Sun": "Open 24 hours"}', 34.0522, -118.2437);
+
+
+INSERT INTO unit_routes (route_id, google_polyline_id, startspot_id, endspot_id, traffic_mode, budget, distance, duration_time)
+VALUES
+    (1, 'polyline_123', 1, 2, 'Walking', 50.00, 12.5, 3.5),
+    (2, 'polyline_456', 2, 3, 'Driving', 30.00, 5.2, 1.5);
