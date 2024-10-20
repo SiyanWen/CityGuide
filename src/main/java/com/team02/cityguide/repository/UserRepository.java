@@ -19,6 +19,13 @@ public interface UserRepository extends ListCrudRepository<UserEntity, Long> {
     void updateUserNameByEmail(String email, String userName);
 
     @Modifying
-    @Query("UPDATE users SET city_id = :cityId WHERE email = :email")
-    void updateCityIdByEmail(String email, String cityId);
+    @Query("UPDATE users SET city_id = :city_id WHERE email = :email")
+    void updateCityIDByEmail(String email, String city_id);
+
+
+    @Modifying
+    @Query("UPDATE users SET profile_pic_url = :profile_pic_url WHERE email = :email")
+    void updateProfileURLByEmail(String profile_pic_url, String email);
+
+
 }

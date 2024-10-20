@@ -14,6 +14,7 @@ public interface UserSpotRepository extends ListCrudRepository<UserSpotEntity, L
 
     List<UserSpotEntity> findByRouteId(Long routeId);
 
+
     @Modifying
     @Query("DELETE FROM user_spots WHERE id = :id")
     void deleteById(Long id);

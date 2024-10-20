@@ -36,6 +36,6 @@ public class DevRunner implements ApplicationRunner {
         logger.info("Received route response from google computeRoutes: {}", routes);
 
         // Test user signUp
-        userService.signUp("foo@mail.com", "123456", "Foo", "San Francisco");
+        userService.signup("foo@mail.com", "123456", "Foo", "San Francisco");
     }
 }
