@@ -9,6 +9,7 @@ public record UnitRouteEntity(
     Long id,
     Long routeId,
     String googlePolylineId,
+    Integer atWhichDay,
     Long startspotId,
     Long endspotId,
     String trafficMode,

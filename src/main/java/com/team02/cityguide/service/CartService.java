@@ -16,14 +16,10 @@ import java.util.Map;
 public class CartService {
     private final CartSpotRepository cartSpotRepository;
     private final UserSpotRepository userSpotRepository;
-    private final RouteLikeRepository routeLikeRepository;
-    private final SpotLikeRepository spotLikeRepository;
 
-    public CartService(CartSpotRepository cartSpotRepository, UserSpotRepository userSpotRepository, RouteLikeRepository routeLikeRepository, SpotLikeRepository spotLikeRepository) {
+    public CartService(CartSpotRepository cartSpotRepository, UserSpotRepository userSpotRepository) {
         this.cartSpotRepository = cartSpotRepository;
         this.userSpotRepository = userSpotRepository;
-        this.routeLikeRepository = routeLikeRepository;
-        this.spotLikeRepository = spotLikeRepository;
     }
 
     // TODO
@@ -48,7 +44,6 @@ public class CartService {
 
             }
         }
-
     }
 
     public void addRouteToCart(Long userId, Long routeId) {
@@ -59,7 +54,6 @@ public class CartService {
                 CartSpotEntity newCartSpot = new CartSpotEntity(null, userSpot.originalGid(), userId, userSpot.name(), userSpot.address(), userSpot.rating(), userSpot.ratingCount(), userSpot.cost(), userSpot.durationTime(), userSpot.openingHours(), userSpot.latitude(), userSpot.longitude(), userSpot.coverImgUrl());
                 cartSpotRepository.save(newCartSpot);
             }
-
         }
     }
 

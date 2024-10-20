@@ -2,7 +2,7 @@ package com.team02.cityguide.model;
 
 /*
  * SurveyBody structure
- *   duration
+ *   daysToPlay
  *   List<StartEndPoints> (size = day + 1)
  *   List<traffic_mode> (size = day)
  *   SpotsPerDay
@@ -18,7 +18,7 @@ import com.team02.cityguide.entity.UserSpotEntity;
 import java.util.List;
 
 public record SurveyBody(
-        Integer durationTime,
+        Integer daysToPlay,
         List<Long> startEndPoints,          // spot_ids
         List<String> trafficModes,
         Integer spotsPerDay,
