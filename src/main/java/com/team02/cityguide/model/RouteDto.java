@@ -5,9 +5,9 @@ import com.team02.cityguide.entity.UnitRouteEntity;
 
 import java.util.List;
 
-public record RouteDto(
+public record RouteDto(     // one route plan for all days
     Long id,
-    Long creatorId,
+//    Long creatorId,
     String name,
     String description,
     Double distance,
@@ -19,7 +19,7 @@ public record RouteDto(
     public RouteDto(RouteEntity routeEntity, List<UnitRouteEntity> legs) {
         this(
                 routeEntity.id(),
-                routeEntity.creatorId(),
+//                routeEntity.creatorId(),
                 routeEntity.name(),
                 routeEntity.description(),
                 routeEntity.distance(),
