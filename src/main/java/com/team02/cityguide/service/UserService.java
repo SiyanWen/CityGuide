@@ -46,8 +46,9 @@ public class UserService {
                                         .build();
         userDetailsManager.createUser(user);
         userRepository.updateUserNameByEmail(email, userName);
-        userRepository.updateCityIDByEmail(cityId, email);
-//        UserEntity savedUser = userRepository.findByEmail(email);
+        userRepository.updateCityIDByEmail(email, cityId);
+        userRepository.updateProfileURLByEmail("url", email);
+//        UserEntity savedUser = updateCityIDByEmailserRepository.findByEmail(email);
     }
 
     public UserDto getUserInfo(String email) {
