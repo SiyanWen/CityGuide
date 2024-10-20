@@ -48,6 +48,6 @@ public class SurveyController {
         List<CartSpotEntity> cartSpots = cartService.getCart(userEntity.id()).cartSpots();
         // plan() - use cart_spots to get routes
         List<RouteDto> routes = routeService.planRoute(cartSpots, surveyBody);
-        return null;
+        return routes;
     }
 }
