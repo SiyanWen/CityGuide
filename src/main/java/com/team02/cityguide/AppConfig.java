@@ -55,7 +55,6 @@ public class AppConfig {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers(HttpMethod.GET, "/", "/index.html", "/*.json", "/*.png", "/static/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/login", "/logout", "/signup").permitAll()
-//                                .requestMatchers(HttpMethod.GET, "/restaurants/**", "/restaurant/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .exceptionHandling()
@@ -69,24 +68,5 @@ public class AppConfig {
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK));
         return http.build();
     }
-//@Bean
-//public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//    http
-//            .csrf().disable()  // Disable CSRF for simplicity in testing (but keep it enabled in production)
-//            .authorizeHttpRequests()
-//            .requestMatchers("/login", "/signup", "/public/**").permitAll()  // Allow access to login page
-//            .anyRequest().authenticated()  // All other requests require authentication
-//            .and()
-//            .formLogin()  // Use default form-based login
-//            .loginPage("/login")  // Optional: Specify the custom login page URL
-//            .defaultSuccessUrl("/home", true)  // Redirect to /home on successful login
-//            .failureUrl("/login?error=true")  // Redirect to /login on failure with error
-//            .and()
-//            .logout()
-//            .logoutUrl("/logout")
-//            .logoutSuccessUrl("/login?logout=true");  // Redirect to login page on logout
-//
-//    return http.build();
-//}
 
 }
