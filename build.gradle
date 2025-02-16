@@ -25,16 +25,27 @@ repositories {
 //}
 
 dependencies {
-    implementation 'net.datafaker:datafaker:2.0.2'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.hibernate:hibernate-core:6.1.7.Final'                   // Hibernate
-    implementation 'com.vladmihalcea:hibernate-types-52:2.14.0'                 // Hibernate Types
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'net.datafaker:datafaker:2.0.2'                              // Datafaker
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'                // Add JAXB API (Fixes `XmlElement` error)
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.2'                      // Add JAXB API (Fixes `XmlElement` error)
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'          // Fix Javax Persistence Issues - Use Jakarta Instead
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'      // Spring Boot Data JPA (Required for Hibernate ORM)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'     // Spring Boot JDBC (for database interactions)
+    implementation 'org.springframework.boot:spring-boot-starter-web'           // Spring Boot Web (for building REST API)
+    implementation 'org.hibernate:hibernate-core:6.2.7.Final'                   // Hibernate Core (Required for JPA) 6.2.7
+    implementation 'com.vladmihalcea:hibernate-types-60:2.21.1'                 // Hibernate Types 5 (Provides support for PostgreSQL JSONB) 52:2.14.0
+    implementation 'org.springframework.boot:spring-boot-starter-security'      // Spring Security (if authentication is needed)
+//    implementation 'com.fasterxml.jackson.core:jackson-databind'
+//    implementation 'com.fasterxml.jackson.core:jackson-core'
+//    implementation 'com.fasterxml.jackson.core:jackson-annotations'
 //    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    runtimeOnly 'org.postgresql:postgresql:42.6.0'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'             // Jackson Databind (Needed for JSON handling)
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'  // Jackson Databind (Needed for JSON handling)
+    runtimeOnly 'org.postgresql:postgresql:42.6.0'                              // Postgres Driver
+    compileOnly 'org.projectlombok:lombok:1.18.26'                              // Lombok (To simplify Java classes)
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'                      // Lombok (To simplify Java classes)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'      // Spring Boot Test
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'                // JUnit Platform Launcher
 }
 
 tasks.named('test') {

@@ -1,3 +1,4 @@
+-- CREATE EXTENSION IF NOT EXISTS hstore;
 DROP TABLE IF EXISTS unit_routes CASCADE;
 DROP TABLE IF EXISTS cart_spots CASCADE;
 DROP TABLE IF EXISTS spot_likes CASCADE;
@@ -6,6 +7,9 @@ DROP TABLE IF EXISTS route_likes CASCADE;
 DROP TABLE IF EXISTS routes CASCADE;
 DROP TABLE IF EXISTS authorities CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS cart_spot_entity CASCADE;
+DROP TABLE IF EXISTS user_spot_entity CASCADE;
+
 
 
 CREATE TABLE users
@@ -63,8 +67,8 @@ CREATE TABLE user_spots
     rating_count    NUMERIC,
     cost            NUMERIC,
     duration_time   NUMERIC,
-    opening_hours   JSON,
-    types           JSON,
+    opening_hours   JSONB,
+    types           JSONB,
     cover_img_url   TEXT,
     reviews         TEXT
 );

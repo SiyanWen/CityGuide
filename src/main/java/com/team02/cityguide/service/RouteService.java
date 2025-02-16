@@ -1,10 +1,11 @@
 package com.team02.cityguide.service;
 
 import com.team02.cityguide.DevRunner;
-import com.team02.cityguide.entity.CartSpotEntity;
+//import com.team02.cityguide.entity.CartSpotEntity;
+import com.team02.cityguide.entity.CartSpots;
 import com.team02.cityguide.entity.RouteEntity;
 import com.team02.cityguide.entity.UnitRouteEntity;
-import com.team02.cityguide.entity.UserSpotEntity;
+//import com.team02.cityguide.entity.UserSpotEntity;
 import com.team02.cityguide.external.RouteRequestBody;
 import com.team02.cityguide.external.RouteResponseBody;
 import com.team02.cityguide.external.WayPoint;
@@ -74,7 +75,7 @@ public class RouteService {
 * */
 
 
-    public List<RouteDto> planRoute(List<CartSpotEntity> cartSpots, SurveyBody surveyBody) {
+    public List<RouteDto> planRoute(List<CartSpots> cartSpots, SurveyBody surveyBody) {
         // get 3 visiting plans for each day
         List<RouteDto> routePlans = new ArrayList<>();
         List<List<List<Long>>> plansOfSpotIdsByDay = spotsPermutation(cartSpots, surveyBody);
@@ -90,8 +91,8 @@ public class RouteService {
                 for (int k = 0; k < plansOfSpotIdsByDay.get(i).get(j).size()-1; k++) { // for each starting spot
                     // build unitRoute
                     // call google computeRoutes() API
-                    String startSpotGid = cartSpotRepository.findById(plansOfSpotIdsByDay.get(i).get(j).get(k)).get().originalGid();
-                    String endSpotGid = cartSpotRepository.findById(plansOfSpotIdsByDay.get(i).get(j).get(k+1)).get().originalGid();
+                    String startSpotGid = cartSpotRepository.findById(plansOfSpotIdsByDay.get(i).get(j).get(k)).get().getOriginalGid();
+                    String endSpotGid = cartSpotRepository.findById(plansOfSpotIdsByDay.get(i).get(j).get(k+1)).get().getOriginalGid();
                     RouteRequestBody routeRequestBody = new RouteRequestBody(
                             new WayPoint(startSpotGid),          // UnitRouteStart
                             new WayPoint(endSpotGid),            // UnitRouteEnd
@@ -137,7 +138,7 @@ public class RouteService {
     // Each day spots seq: List<CartSpotEntityId>
     // All days spots seq: List<List<CartSpotEntityId>>
     // 3 plans of spots seq: List<List<List<CartSpotEntityId>>>; at least the first one is not null;
-    private List<List<List<Long>>> spotsPermutation(List<CartSpotEntity> cartSpots, SurveyBody surveyBody) {
+    private List<List<List<Long>>> spotsPermutation(List<CartSpots> cartSpots, SurveyBody surveyBody) {
         // sanity check
         int spotNumPerDay = Math.min(surveyBody.spotsPerDay(), 9);
         if (spotNumPerDay == 0) spotNumPerDay = 2;
@@ -286,18 +287,18 @@ public class RouteService {
         }
     }
 
-    private Map<Long, Node> buildGraph(List<CartSpotEntity> cartSpots) {
+    private Map<Long, Node> buildGraph(List<CartSpots> cartSpots) {
         Map<Long, Node> nodesMap = new HashMap<>();
-        for (CartSpotEntity cartSpot : cartSpots) {
-            nodesMap.put(cartSpot.id(), new Node(cartSpot.id(), cartSpot.latitude(), cartSpot.longitude()));
+        for (CartSpots cartSpot : cartSpots) {
+            nodesMap.put(cartSpot.getId(), new Node(cartSpot.getId(), cartSpot.getLatitude(), cartSpot.getLongitude()));
         }
         for (Map.Entry<Long, Node> nodeEntry : nodesMap.entrySet()) { // add neighbors
-            for (CartSpotEntity cartSpot : cartSpots) {
-                if (nodeEntry.getValue().id == cartSpot.id()) continue;
-                if (!(nodeEntry.getValue().mapNeiDists == null) && nodeEntry.getValue().mapNeiDists.containsKey(cartSpot.id())) continue;
-                double distance = calculateManhattanDistance(nodeEntry.getValue().latitude, nodeEntry.getValue().longitude, cartSpot.latitude(), cartSpot.longitude());
-                nodeEntry.getValue().mapNeiDists.put(cartSpot.id(), (int) distance);
-                nodeEntry.getValue().neighbors.add(new Node(cartSpot.id(), cartSpot.latitude(), cartSpot.longitude()));
+            for (CartSpots cartSpot : cartSpots) {
+                if (nodeEntry.getValue().id == cartSpot.getId()) continue;
+                if (!(nodeEntry.getValue().mapNeiDists == null) && nodeEntry.getValue().mapNeiDists.containsKey(cartSpot.getId())) continue;
+                double distance = calculateManhattanDistance(nodeEntry.getValue().latitude, nodeEntry.getValue().longitude, cartSpot.getLatitude(), cartSpot.getLongitude());
+                nodeEntry.getValue().mapNeiDists.put(cartSpot.getId(), (int) distance);
+                nodeEntry.getValue().neighbors.add(new Node(cartSpot.getId(), cartSpot.getLatitude(), cartSpot.getLatitude()));
             }
         }
         for (Map.Entry<Long, Node> nodeEntry : nodesMap.entrySet()) { // sort neighbors

@@ -1,6 +1,7 @@
 package com.team02.cityguide.controller;
 
-import com.team02.cityguide.entity.CartSpotEntity;
+//import com.team02.cityguide.entity.CartSpotEntity;
+import com.team02.cityguide.entity.CartSpots;
 import com.team02.cityguide.entity.UserEntity;
 import com.team02.cityguide.model.RouteDto;
 import com.team02.cityguide.model.SurveyBody;
@@ -45,7 +46,7 @@ public class SurveyController {
     public List<RouteDto> submitSurvey(@AuthenticationPrincipal User user, @RequestBody SurveyBody surveyBody) {
         UserEntity userEntity = userService.findByEmail(user.getUsername());
         // use user_id to get cart_spots
-        List<CartSpotEntity> cartSpots = cartService.getCart(userEntity.id()).cartSpots();
+        List<CartSpots> cartSpots = cartService.getCart(userEntity.id()).cartSpots();
         // plan() - use cart_spots to get routes
         List<RouteDto> routes = routeService.planRoute(cartSpots, surveyBody);
         return routes;

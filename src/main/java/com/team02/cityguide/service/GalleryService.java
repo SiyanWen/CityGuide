@@ -3,7 +3,8 @@ package com.team02.cityguide.service;
 import com.team02.cityguide.entity.RouteEntity;
 import com.team02.cityguide.entity.RouteLikeEntity;
 import com.team02.cityguide.entity.SpotLikeEntity;
-import com.team02.cityguide.entity.UserSpotEntity;
+//import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.entity.UserSpots;
 import com.team02.cityguide.model.AddSpotBody;
 import com.team02.cityguide.model.RouteGalleryDto;
 import com.team02.cityguide.model.SpotGalleryDto;
@@ -31,16 +32,16 @@ public class GalleryService {
 
     // TODO
     public void saveSpotToGallery(Long userId, AddSpotBody addSpotBody) {
-        UserSpotEntity userSpot=userSpotRepository.findByOriginalGid(addSpotBody.originalGid());
+        UserSpots userSpot=userSpotRepository.findByOriginalGid(addSpotBody.originalGid());
         if(userSpot==null) {
-            userSpot= new UserSpotEntity(null,addSpotBody.routeId(),addSpotBody.originalGid(),addSpotBody.name(),addSpotBody.address(),addSpotBody.description(),addSpotBody.latitude(),addSpotBody.longitude(),addSpotBody.durationTime(),addSpotBody.cost(),addSpotBody.rating(),addSpotBody.ratingCount(),addSpotBody.openingHours(),addSpotBody.types(),addSpotBody.coverImgUrl(),addSpotBody.reviews());
+            userSpot= new UserSpots(null,addSpotBody.routeId(),addSpotBody.originalGid(),addSpotBody.name(),addSpotBody.address(),addSpotBody.description(),addSpotBody.latitude(),addSpotBody.longitude(),addSpotBody.durationTime(),addSpotBody.cost(),addSpotBody.rating(),addSpotBody.ratingCount(),addSpotBody.openingHours(),addSpotBody.types(),addSpotBody.coverImgUrl(),addSpotBody.reviews());
             userSpotRepository.save(userSpot);
-            SpotLikeEntity spotLike=new SpotLikeEntity(null,userId,userSpot.id());
+            SpotLikeEntity spotLike=new SpotLikeEntity(null,userId,userSpot.getId());
             spotLikeRepository.save(spotLike);
         }else{
-            SpotLikeEntity spotLike = spotLikeRepository.findByUserIdAndSpotId(userId, userSpot.id());
+            SpotLikeEntity spotLike = spotLikeRepository.findByUserIdAndSpotId(userId, userSpot.getId());
             if (spotLike == null) {
-                spotLike=new SpotLikeEntity(null,userId,userSpot.id());
+                spotLike=new SpotLikeEntity(null,userId,userSpot.getId());
                 spotLikeRepository.save(spotLike);
             }
         }
@@ -76,10 +77,10 @@ public class GalleryService {
     // TODO
     public SpotGalleryDto getSpotGalleryDto(Long userId) {
         List<SpotLikeEntity> likedUserAndSpotPairs = spotLikeRepository.findByUserId(userId);
-        List<UserSpotEntity> spots = new ArrayList<>();
+        List<UserSpots> spots = new ArrayList<>();
         if(likedUserAndSpotPairs.size()>0) {
             for(SpotLikeEntity spotLikeEntity : likedUserAndSpotPairs){
-                UserSpotEntity likedSpot = userSpotRepository.findById(spotLikeEntity.userId()).orElse(null);
+                UserSpots likedSpot = userSpotRepository.findById(spotLikeEntity.userId()).orElse(null);
                 spots.add(likedSpot);
             }
         }
