@@ -13,7 +13,7 @@ package com.team02.cityguide.model;
  *       total
  * */
 
-import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.entity.UserSpots;
 
 import java.util.List;
 
