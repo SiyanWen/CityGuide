@@ -46,6 +46,6 @@ public class CartController {
     @DeleteMapping("/cart/spot/{spotId}")    // why not @DeleteMapping("/cart") + (@RequestBody AddSpotBody addSpotBody) ?
     public void removeSpotFromCart(@AuthenticationPrincipal User user, @PathVariable("spotId") Long spotId) {
         UserEntity userEntity = userService.findByEmail(user.getUsername());
-        cartService.removeSpotFromCart(userEntity.id(), spotId);
+        cartService.removeSpotFromCart(spotId, userEntity.id());
     }
 }

@@ -24,8 +24,6 @@ public record AddSpotBody(
         Integer ratingCount,
         JsonNode openingHours,
         JsonNode types,
-//        Map<String, Object> openingHours,      // how to save to jsonb: map
-//        Map<String, List<String>> types,
         String coverImgUrl,
         String reviews
 ) {

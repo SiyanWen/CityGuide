@@ -13,11 +13,12 @@ public interface CartSpotRepository extends ListCrudRepository<CartSpots, Long> 
 
     List<CartSpots> findByUserId(Long userId);
 
-    @Modifying
-    @Query("DELETE FROM cart_spots WHERE user_id = :userId")
+//    These annotations are from JPA and not useful since we already used the ListCrudRepository from JDBC
+//    @Modifying
+//    @Query("DELETE FROM cart_spots WHERE user_id = :userId")
     void deleteByUserId(Long userId);
 
-    @Modifying
-    @Query("DELETE FROM cart_spots WHERE id = :spotId AND user_id = :userId")
-    void deleteByIdAndUserId(@Param("userId") Long userId, @Param("spotId") Long spotId);
+//    @Modifying
+//    @Query("DELETE FROM cart_spots WHERE id = :spotId AND user_id = :userId")
+    void deleteByIdAndUserId(@Param("id") Long spotId, @Param("userId") Long userId);
 }

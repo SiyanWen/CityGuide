@@ -41,6 +41,7 @@ public class CartSpots{
         private Double latitude;
         private Double longitude;
         private String coverImgUrl;
+        private Boolean isHotel;
 }
 
 //@Table("cart_spots")

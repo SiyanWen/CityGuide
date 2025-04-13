@@ -74,8 +74,10 @@ public class RouteService {
 
 * */
 
+    // // When survey is posted, check if typesJson has types of "lodging", "real_estate_agency", ...
 
     public List<RouteDto> planRoute(List<CartSpots> cartSpots, SurveyBody surveyBody) {
+        logger.info("If SurveyBody is not null, SurveyBody: " + surveyBody.toString());
         // get 3 visiting plans for each day
         List<RouteDto> routePlans = new ArrayList<>();
         List<List<List<Long>>> plansOfSpotIdsByDay = spotsPermutation(cartSpots, surveyBody);
@@ -96,7 +98,7 @@ public class RouteService {
                     RouteRequestBody routeRequestBody = new RouteRequestBody(
                             new WayPoint(startSpotGid),          // UnitRouteStart
                             new WayPoint(endSpotGid),            // UnitRouteEnd
-                            surveyBody.trafficModes().get(j),   // trafficMode
+                            surveyBody.trafficModes(),   // trafficMode
                             false                               // computeAlternativeRoutes
                     );
                     RouteResponseBody routeResponseBody = googleApiService.computeRoutes(routeRequestBody);
@@ -112,7 +114,7 @@ public class RouteService {
                             j,
                             plansOfSpotIdsByDay.get(i).get(j).get(k),
                             plansOfSpotIdsByDay.get(i).get(j).get(k+1),
-                            surveyBody.trafficModes().get(j),
+                            surveyBody.trafficModes(),
                             surveyBody.budget().total(),
                             distance,
                             duration
@@ -120,8 +122,8 @@ public class RouteService {
                     unitRoutesCurPlan.add(unitRoute);
                     totalDistance += distance;
                     totalDuration += duration;
-                    if (!trafficModes.contains(surveyBody.trafficModes().get(j))) {
-                        trafficModes.add(surveyBody.trafficModes().get(j));
+                    if (!trafficModes.contains(surveyBody.trafficModes())) {
+                        trafficModes.add(surveyBody.trafficModes());
                     }
                 }
                 unitRouteRepository.saveAll(unitRoutesCurPlan);

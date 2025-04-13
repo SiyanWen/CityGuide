@@ -20,7 +20,7 @@ import java.util.List;
 public record SurveyBody(
         Integer daysToPlay,
         List<Long> startEndPoints,          // spot_ids
-        List<String> trafficModes,
+        String trafficModes,
         Integer spotsPerDay,
         Budget budget
 ) {

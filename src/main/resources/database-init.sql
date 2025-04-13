@@ -82,6 +82,7 @@ CREATE TABLE spot_likes
     CONSTRAINT fk_spot_gallery2 FOREIGN KEY (spot_id) REFERENCES user_spots (id) ON DELETE CASCADE
 );
 
+-- add field(s): ifHotel
 CREATE TABLE cart_spots
 (
     id              SERIAL PRIMARY KEY NOT NULL,
@@ -97,6 +98,7 @@ CREATE TABLE cart_spots
     opening_hours   JSONB,
     latitude        NUMERIC            NOT NULL,
     longitude       NUMERIC            NOT NULL,
+    is_hotel        BOOLEAN            NOT NULL,
     CONSTRAINT fk_cart_spot FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT fk_cart_spot2 FOREIGN KEY (original_gid) REFERENCES user_spots (original_gid) ON DELETE CASCADE
 );

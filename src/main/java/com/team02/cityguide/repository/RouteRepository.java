@@ -1,7 +1,7 @@
 package com.team02.cityguide.repository;
 
 import com.team02.cityguide.entity.RouteEntity;
-import com.team02.cityguide.entity.UserSpotEntity;
+import com.team02.cityguide.entity.UserSpots;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.ListCrudRepository;
